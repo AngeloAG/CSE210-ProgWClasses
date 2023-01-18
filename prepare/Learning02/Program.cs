@@ -1,3 +1,11 @@
+/*
+Author: Angelo Arellano Gaona
+Date: 1/15/2022
+Description:
+Experiments with Classes and objects. 
+Creates a Resume and Job classes to display
+job history of a person
+*/
 using System;
 
 class Program
