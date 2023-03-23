@@ -25,9 +25,37 @@ class Program
     const String AAAGSeeUsersLbl = "See Users";
     const String AAAGQuitLbl = "Quit";
 
-    AAAGMenu aaagMenu = new AAAGMenu("Select typing the option number and then press Enter.", new List<String>() { AAAGSeeInventoryLbl, AAAGLoadInventoryLbl, AAAGSaveInventoryLbl, AAAGSeeUsersLbl, AAAGQuitLbl });
-    AAAGMenu aaagInventorySubmenu = new AAAGMenu("Select typing the option number and then press Enter.", new List<String>() { "Withdraw Tool", "Return Tool", "Quit" });
-    AAAGMenu aaagUsersSubmenu = new AAAGMenu("Select typing the option number and then press Enter.", new List<String>() { "Add User", "Remove User", "Quit" });
+    //Inventory submenu options
+    const String AAAGWithdrawToolLbl = "Withdraw Tool";
+    const String AAAGReturnToolLbl = "Return Tool";
+
+    //Users submenu options
+    const String AAAGAddUserLbl = "Add User";
+    const String AAAGRemoveUserLbl = "Remove User";
+
+    AAAGMenu aaagMenu = new AAAGMenu(
+      "Select typing the option number and then press Enter.",
+      new List<String>() {
+        AAAGSeeInventoryLbl,
+        AAAGLoadInventoryLbl,
+        AAAGSaveInventoryLbl,
+        AAAGSeeUsersLbl,
+        AAAGQuitLbl
+      });
+    AAAGMenu aaagInventorySubmenu = new AAAGMenu(
+      "Select typing the option number and then press Enter.",
+      new List<String>() {
+        AAAGWithdrawToolLbl,
+        AAAGReturnToolLbl,
+        AAAGQuitLbl
+      });
+    AAAGMenu aaagUsersSubmenu = new AAAGMenu(
+      "Select typing the option number and then press Enter.",
+      new List<String>() {
+        AAAGAddUserLbl,
+        AAAGRemoveUserLbl,
+        AAAGQuitLbl
+      });
 
     bool aaagContinueProgramLoop = true;
     while (aaagContinueProgramLoop)
@@ -38,26 +66,24 @@ class Program
       AAAGPrint("\n");
       String aaagUserMenuChoice = AAAGRead();
 
-      // This is because menu options are constansts and the user enters the number of the option. This transforms the number input into the option text
-      String aaagUserMenuChoiceString;
-      int aaagUserChoiceAsInt;
-
-      bool aaagParseSuccessful = int.TryParse(aaagUserMenuChoice, out aaagUserChoiceAsInt);
-
-      if (aaagParseSuccessful)
-      {
-        aaagUserMenuChoiceString = aaagMenu.AAAGGetOptionStringFromNumber(aaagUserChoiceAsInt);
-      }
-      else
-      {
-        aaagUserMenuChoiceString = "";
-      }
-      //-----------------------------------------------------------------
+      String aaagUserMenuChoiceString = AAAGGetChoiceFromMenu(aaagUserMenuChoice, aaagMenu);
 
       switch (aaagUserMenuChoiceString)
       {
         case AAAGSeeInventoryLbl:
           AAAGPrint("See inventory");
+          AAAGRead();
+          break;
+        case AAAGLoadInventoryLbl:
+          AAAGPrint("Load inventory");
+          AAAGRead();
+          break;
+        case AAAGSaveInventoryLbl:
+          AAAGPrint("Save inventory");
+          AAAGRead();
+          break;
+        case AAAGSeeUsersLbl:
+          AAAGPrint("See users");
           AAAGRead();
           break;
         case AAAGQuitLbl:
@@ -80,5 +106,30 @@ class Program
   static String AAAGRead()
   {
     return Console.ReadLine();
+  }
+
+  /// <summary>
+  /// This function exists because menu options are constansts and the user enters the number of the option. This transforms the number input into the option text
+  /// </summary>
+  /// <param name="userChoiceInput">The number as string the user typed.</param>
+  /// <param name="menu">The menu object that has the options.</param>
+  /// <returns>The option as text that the number entered represents.</returns>
+  static String AAAGGetChoiceFromMenu(String userChoiceInput, AAAGMenu menu)
+  {
+
+    String aaagUserMenuChoiceString;
+    int aaagUserChoiceAsInt;
+
+    bool aaagParseSuccessful = int.TryParse(userChoiceInput, out aaagUserChoiceAsInt);
+
+    if (aaagParseSuccessful)
+    {
+      aaagUserMenuChoiceString = menu.AAAGGetOptionStringFromNumber(aaagUserChoiceAsInt);
+    }
+    else
+    {
+      aaagUserMenuChoiceString = "";
+    }
+    return aaagUserMenuChoiceString;
   }
 }

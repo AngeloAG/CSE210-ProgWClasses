@@ -42,7 +42,7 @@ public class AAAGMenu
     {
       aaagOption = _aaagOptions[optionNumber - 1];
     }
-    catch (IndexOutOfRangeException)
+    catch (ArgumentOutOfRangeException)
     {
       aaagOption = "";
     }
