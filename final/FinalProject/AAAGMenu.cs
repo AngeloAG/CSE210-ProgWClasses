@@ -15,15 +15,17 @@ Return user selected option
 public class AAAGMenu
 {
   protected List<String> _aaagOptions;
+  protected String _menuTitle;
 
-  public AAAGMenu(List<String> options)
+  public AAAGMenu(String menuTitle, List<String> options)
   {
+    _menuTitle = menuTitle;
     _aaagOptions = options;
   }
 
   public String AAAGToString()
   {
-    String aaagMenuText = "";
+    String aaagMenuText = _menuTitle + "\n";
     int aaagOptionNumber = 1;
     foreach (String option in _aaagOptions)
     {
@@ -31,5 +33,19 @@ public class AAAGMenu
       aaagOptionNumber++;
     }
     return aaagMenuText;
+  }
+
+  public String AAAGGetOptionStringFromNumber(int optionNumber)
+  {
+    String aaagOption;
+    try
+    {
+      aaagOption = _aaagOptions[optionNumber - 1];
+    }
+    catch (IndexOutOfRangeException)
+    {
+      aaagOption = "";
+    }
+    return aaagOption;
   }
 }
