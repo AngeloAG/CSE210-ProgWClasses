@@ -25,6 +25,8 @@ class Program
     const String AAAGSeeUsersLbl = "See Users";
     const String AAAGQuitLbl = "Quit";
 
+    const String AAAGMenuLbl = "Select typing the option number and then press Enter.";
+
     //Inventory submenu options
     const String AAAGWithdrawToolLbl = "Withdraw Tool";
     const String AAAGReturnToolLbl = "Return Tool";
@@ -34,7 +36,7 @@ class Program
     const String AAAGRemoveUserLbl = "Remove User";
 
     AAAGMenu aaagMenu = new AAAGMenu(
-      "Select typing the option number and then press Enter.",
+      AAAGMenuLbl,
       new List<String>() {
         AAAGSeeInventoryLbl,
         AAAGLoadInventoryLbl,
@@ -43,14 +45,14 @@ class Program
         AAAGQuitLbl
       });
     AAAGMenu aaagInventorySubmenu = new AAAGMenu(
-      "Select typing the option number and then press Enter.",
+      AAAGMenuLbl,
       new List<String>() {
         AAAGWithdrawToolLbl,
         AAAGReturnToolLbl,
         AAAGQuitLbl
       });
     AAAGMenu aaagUsersSubmenu = new AAAGMenu(
-      "Select typing the option number and then press Enter.",
+      AAAGMenuLbl,
       new List<String>() {
         AAAGAddUserLbl,
         AAAGRemoveUserLbl,
